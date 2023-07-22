@@ -1,3 +1,5 @@
+using Stock.Business.IoC;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddStockBusinessDependencies(
+    builder.Configuration.GetConnectionString("DefaultConnection"),
+    builder.Configuration.GetConnectionString("RabbitMqUri"));
+
 
 var app = builder.Build();
 

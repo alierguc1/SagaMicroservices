@@ -1,26 +1,24 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Order.DataAccess.Context;
-using Order.DataAccess.Repository.Concrete;
-using Order.DataAccess.Repository.Interface;
+using Stock.DataAccess.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Order.DataAccess.IoC
+namespace Stock.DataAccess.IoC
 {
-    public static class OrderDataAccessDependencies
+    public static class StockDataAccessDependencies
     {
-        public static IServiceCollection AddOrderDataAccessDependencies(
+        public static IServiceCollection AddStockDataAccessDependencies(
             this IServiceCollection services,
             string connectionString,
             string rabbitMqConnection)
         {
 
-            services.AddScoped<IOrderRepository, OrderRepository>();
+            //services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddMassTransit(x =>
             {
@@ -32,10 +30,10 @@ namespace Order.DataAccess.IoC
 
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(connectionString);
+                options.UseNpgsql(connectionString);
             });
 
-           
+
             return services;
         }
     }
