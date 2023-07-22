@@ -12,7 +12,7 @@ using Order.DataAccess.Context;
 namespace Order.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230721201818_InitialCreate")]
+    [Migration("20230722150647_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -68,11 +68,6 @@ namespace Order.DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(75)
                         .HasColumnType("nvarchar(75)");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

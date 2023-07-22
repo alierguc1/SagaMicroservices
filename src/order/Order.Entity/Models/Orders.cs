@@ -16,6 +16,6 @@ namespace Order.Entity.Models
         public OrderStatus Status { get; set; }
         public Adress Adress{ get; set; }
         public string FailMessage { get; set; }
-        public bool IsActive { get; set; }
+        
     }
 }

@@ -22,8 +22,7 @@ namespace Order.DataAccess.Migrations
                     Adress_Line = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Adress_Province = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Adress_District = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FailMessage = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
+                    FailMessage = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: false)
                 },
                 constraints: table =>
                 {

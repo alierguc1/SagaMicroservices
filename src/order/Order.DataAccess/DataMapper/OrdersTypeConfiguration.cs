@@ -19,8 +19,8 @@ namespace Order.DataAccess.DataMapper
             builder.ToTable("Orders");
             builder.HasKey(x => x.Id);
             builder.Property(b => b.Id).HasDefaultValueSql("NEWID()");
-            builder.Property(b => b.FailMessage).IsRequired().HasMaxLength(75);
-            builder.Property(b => b.IsActive).HasDefaultValue(true);
+            builder.Property(b => b.FailMessage).HasMaxLength(75);
+           
      
         }
     }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Order.DataAccess.IoC;
+using Order.Business.Services.Interfaces;
+using Order.Business.Services.Concrete;
 
 namespace Order.Business.IoC
 {
@@ -15,6 +17,7 @@ namespace Order.Business.IoC
             string connectionString,
             string rabbitMqConnectionString)
         {
+            services.AddScoped<IOrderServices, OrderServices>();
             services.AddOrderDataAccessDependencies(connectionString, rabbitMqConnectionString);
             return services;
         }

@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Order.DataAccess.Context;
+using Order.DataAccess.Repository.Concrete;
+using Order.DataAccess.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,8 @@ namespace Order.DataAccess.IoC
             string connectionString,
             string rabbitMqConnection)
         {
+
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddMassTransit(x =>
             {

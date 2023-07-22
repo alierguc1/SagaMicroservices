@@ -9,7 +9,7 @@
   <ItemGroup>
     <Folder Include="Events\payment\" />
     <Folder Include="Events\Stock\" />
-    <Folder Include="Events\order\" />
+    <Folder Include="Messages\stock\" />
   </ItemGroup>
 
 </Project>
