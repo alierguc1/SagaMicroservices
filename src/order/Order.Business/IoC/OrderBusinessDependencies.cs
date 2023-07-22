@@ -10,9 +10,12 @@ namespace Order.Business.IoC
 {
     public static class OrderBusinessDependencies
     {
-        public static IServiceCollection AddOrderBusinessDependencies(this IServiceCollection services, string connectionString)
+        public static IServiceCollection AddOrderBusinessDependencies(
+            this IServiceCollection services,
+            string connectionString,
+            string rabbitMqConnectionString)
         {
-            services.AddOrderDataAccessDependencies(connectionString);
+            services.AddOrderDataAccessDependencies(connectionString, rabbitMqConnectionString);
             return services;
         }
     }

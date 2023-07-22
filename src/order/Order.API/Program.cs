@@ -9,7 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddOrderBusinessDependencies(builder.Configuration.GetConnectionString("DefaultConnection"));
+builder.Services.AddOrderBusinessDependencies(
+    builder.Configuration.GetConnectionString("DefaultConnection"), 
+    builder.Configuration.GetConnectionString("RabbitMqUri"));
 
 
 var app = builder.Build();
