@@ -1,9 +1,11 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Order.DataAccess.Consumers;
 using Order.DataAccess.Context;
 using Order.DataAccess.Repository.Concrete;
 using Order.DataAccess.Repository.Interface;
+using Shared.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +26,15 @@ namespace Order.DataAccess.IoC
 
             services.AddMassTransit(x =>
             {
+                x.AddConsumer<PaymentCompletedEventConsumer>();
                 x.UsingRabbitMq((context, conf) =>
                 {
                     conf.Host(rabbitMqConnection);
+                    conf.ReceiveEndpoint(RabbitMQSettingsConst.ORDER_PAYMENT_COMPLETED_QUEUE_NAME, e =>
+                    {
+                        e.ConfigureConsumer<PaymentCompletedEventConsumer>(context);
+                    });
+
                 });
             });
 

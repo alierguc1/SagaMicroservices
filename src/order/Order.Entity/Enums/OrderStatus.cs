@@ -9,7 +9,7 @@ namespace Order.Entity.Enums
     public enum OrderStatus
     {
         Suspend,
-        Succesfully,
+        Completed,
         Fail
     }
 }

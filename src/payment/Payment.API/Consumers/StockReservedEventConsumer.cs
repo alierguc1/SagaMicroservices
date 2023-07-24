@@ -33,7 +33,7 @@ namespace Payment.API.Consumers
                     _logger.LogInformation($"{context.Message.Payment.TotalPrice} Bakiyesi olan kişinin " +
                         $"id : ${context.Message.BuyerId} ödeme yapabilir.");
 
-                    await _publishEndpoint.Publish(new PaymentSuccessedEvent
+                    await _publishEndpoint.Publish(new PaymentCompletedEvent
                     {
                         BuyerId = context.Message.BuyerId,
                         OrderId = context.Message.OrderId
