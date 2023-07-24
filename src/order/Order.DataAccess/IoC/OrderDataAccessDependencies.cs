@@ -27,6 +27,7 @@ namespace Order.DataAccess.IoC
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<PaymentCompletedEventConsumer>();
+                x.AddConsumer<PaymentFailEventConsumer>();
                 x.UsingRabbitMq((context, conf) =>
                 {
                     conf.Host(rabbitMqConnection);
@@ -34,7 +35,11 @@ namespace Order.DataAccess.IoC
                     {
                         e.ConfigureConsumer<PaymentCompletedEventConsumer>(context);
                     });
-
+                    conf.ReceiveEndpoint(RabbitMQSettingsConst.ORDER_PAYMENT_FAILED_EVENT_QUEUE_NAME, e =>
+                    {
+                        e.ConfigureConsumer<PaymentFailEventConsumer>(context);
+                    });
+                    
                 });
             });
 
