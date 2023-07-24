@@ -1,6 +1,8 @@
-﻿using Payment.API.RedisBuilder.Interfaces;
+﻿using Payment.API.Entity;
+using Payment.API.RedisBuilder.Interfaces;
 using StackExchange.Redis;
 using System.Text.Json;
+using static MassTransit.ValidationResultExtensions;
 
 namespace Payment.API.RedisBuilder.Concrete
 {
@@ -42,9 +44,10 @@ namespace Payment.API.RedisBuilder.Concrete
             return JsonSerializer.Deserialize<T>(result);
         }
 
-        public async Task<string> GetValueAsync(string key)
+        public async Task<int> GetValueAsync(string key)
         {
-            return await _cache.StringGetAsync(key);
+            var ss = _cache.StringGet(key);
+            return JsonSerializer.Deserialize<int>(((int)ss));
         }
 
         public async Task<bool> SetValueAsync(string key, int value)
@@ -60,6 +63,12 @@ namespace Payment.API.RedisBuilder.Concrete
                 result = JsonSerializer.SerializeToUtf8Bytes(action());
                 _cache.StringSet(key, result, ExpireTime);
             }
+            return JsonSerializer.Deserialize<T>(result);
+        }
+
+        public async Task<T> GetModelAsync<T>(string key) where T : class
+        {
+            var result = _cache.StringGet(key);
             return JsonSerializer.Deserialize<T>(result);
         }
     }

@@ -10,5 +10,6 @@ namespace Shared.Settings
     {
         public const string STOCK_ORDER_CREATED_EVENT_QUEUE_NAME = "stock-order-created-queue";
         public const string STOCK_RESERVED_EVENT_QUEUE_NAME = "stock-reserved-queue";
+        public const string PAYMENT_STOCK_RESERVED_EVENT_QUEUE_NAME = "payment-stock-reserved-queue";
     }
 }
