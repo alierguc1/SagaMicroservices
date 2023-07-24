@@ -26,12 +26,17 @@ namespace Stock.Infrastructure.IoC
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<OrderCreatedEventConsumer>();
+                x.AddConsumer<PaymentFailedEventConsumer>();
                 x.UsingRabbitMq((context, conf) =>
                 {
                     conf.Host(rabbitMqConnection);
                     conf.ReceiveEndpoint(RabbitMQSettingsConst.STOCK_ORDER_CREATED_EVENT_QUEUE_NAME, e =>
                     {
                         e.ConfigureConsumer<OrderCreatedEventConsumer>(context);
+                    });
+                    conf.ReceiveEndpoint(RabbitMQSettingsConst.STOCK_PAYMENT_FAILED_EVENT_QUEUE_NAME, e =>
+                    {
+                        e.ConfigureConsumer<PaymentFailedEventConsumer>(context);
                     });
                 });
             });

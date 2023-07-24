@@ -48,7 +48,8 @@ namespace Payment.API.Consumers
                     {
                         BuyerId = context.Message.BuyerId,
                         OrderId = context.Message.OrderId,
-                        Message = "Yetersiz Bakiye"
+                        Message = "Yetersiz Bakiye",
+                        OrderItems = context.Message.OrderItem
                     });
 
 
