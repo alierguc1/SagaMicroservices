@@ -1,4 +1,4 @@
-using Stock.Business.IoC;
+using Stock.Infrastructure.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddStockBusinessDependencies(
+builder.Services.AddStockInfrastructureDependencies(
     builder.Configuration.GetConnectionString("DefaultConnection"),
     builder.Configuration.GetConnectionString("RabbitMqUri"));
 

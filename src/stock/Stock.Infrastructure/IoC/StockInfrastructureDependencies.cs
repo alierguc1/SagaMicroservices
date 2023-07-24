@@ -1,30 +1,38 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Stock.DataAccess.Context;
+using Shared.Settings;
+using Stock.Infrastructure.Consumers;
+using Stock.Infrastructure.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stock.DataAccess.IoC
+
+namespace Stock.Infrastructure.IoC
 {
-    public static class StockDataAccessDependencies
+    public static class StockInfrastructureDependencies
     {
-        public static IServiceCollection AddStockDataAccessDependencies(
-            this IServiceCollection services,
-            string connectionString,
-            string rabbitMqConnection)
+        public static IServiceCollection AddStockInfrastructureDependencies(
+           this IServiceCollection services,
+           string connectionString,
+           string rabbitMqConnection)
         {
 
             //services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddMassTransit(x =>
             {
+                x.AddConsumer<OrderCreatedEventConsumer>();
                 x.UsingRabbitMq((context, conf) =>
                 {
                     conf.Host(rabbitMqConnection);
+                    conf.ReceiveEndpoint(RabbitMQSettingsConst.STOCK_ORDER_CREATED_EVENT_QUEUE_NAME, e =>
+                    {
+                        e.ConfigureConsumer<OrderCreatedEventConsumer>(context);
+                    });
                 });
             });
 

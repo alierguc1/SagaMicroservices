@@ -3,16 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Stock.DataAccess.Migrations
+namespace Stock.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class StockInitialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Stocks",
+                name: "OrderStocks",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -21,7 +21,7 @@ namespace Stock.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Stocks", x => x.Id);
+                    table.PrimaryKey("PK_OrderStocks", x => x.Id);
                 });
         }
 
@@ -29,7 +29,7 @@ namespace Stock.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Stocks");
+                name: "OrderStocks");
         }
     }
 }

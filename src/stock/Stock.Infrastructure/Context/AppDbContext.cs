@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Stock.Entity.Models;
+using Stock.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stock.DataAccess.Context
+namespace Stock.Infrastructure.Context
 {
     public class AppDbContext : DbContext
     {
@@ -27,6 +28,7 @@ namespace Stock.DataAccess.Context
 
         }
 
-        public DbSet<Stocks> Stocks { get; set; }
+
+        public DbSet<OrderStock> OrderStocks { get; set; }
     }
 }

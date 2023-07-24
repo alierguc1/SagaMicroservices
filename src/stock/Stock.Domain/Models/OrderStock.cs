@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stock.Entity.Models
+namespace Stock.Domain.Models
 {
-    public class Stocks
+    public class OrderStock
     {
         public Guid Id { get; set; }
         public Guid ProductId { get; set; }
