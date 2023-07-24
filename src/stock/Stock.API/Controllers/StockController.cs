@@ -20,7 +20,8 @@ namespace Stock.API.Controllers
         public async Task<IActionResult> GetAllStocks()
         {
 
-            return Ok(await _appDbContext.OrderStocks.ToListAsync());
+            return Ok(await _appDbContext.OrderStocks.ToListAsync())
+                ;
         }
     }
 }
