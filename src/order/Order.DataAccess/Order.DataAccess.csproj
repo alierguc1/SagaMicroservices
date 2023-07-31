@@ -26,4 +26,8 @@
     <ProjectReference Include="..\Order.Entity\Order.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Consumers\" />
+  </ItemGroup>
+
 </Project>
