@@ -14,5 +14,6 @@ namespace Shared.Settings
         public const string ORDER_PAYMENT_COMPLETED_QUEUE_NAME = "order-payment-completed-queue";
         public const string STOCK_PAYMENT_FAILED_EVENT_QUEUE_NAME = "stock-payment-failed-queue";
         public const string ORDER_PAYMENT_FAILED_EVENT_QUEUE_NAME = "order-payment-failed-queue";
+        public const string ORDER_SAGA = "order-saga-queue";
     }
 }
