@@ -1,4 +1,5 @@
 using MassTransit;
+using Payment.API.Consumers;
 using Payment.API.RedisBuilder.Concrete;
 using Payment.API.RedisBuilder.Interfaces;
 using Shared.Settings;
@@ -18,9 +19,14 @@ var multiplexer = ConnectionMultiplexer.Connect(configuration.GetConnectionStrin
 builder.Services.AddSingleton<IConnectionMultiplexer>(multiplexer);
 builder.Services.AddMassTransit(x =>
 {
+    x.AddConsumer<StockReservedEventConsumer>();
     x.UsingRabbitMq((context, conf) =>
     {
         conf.Host(configuration.GetConnectionString("RabbitMqUri"));
+        conf.ReceiveEndpoint(RabbitMQSettingsConst.STOCK_RESERVED_EVENT_QUEUE_NAME, e =>
+        {
+            e.ConfigureConsumer<StockReservedEventConsumer>(context);
+        });
     });
 });
 

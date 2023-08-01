@@ -5,8 +5,10 @@ using Order.Entity.Dtos;
 using Order.Entity.Enums;
 using Order.Entity.Models;
 using Shared.Events.order;
+using Shared.Interfaces;
 using Shared.Messages.order;
 using Shared.Messages.payment;
+using Shared.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +20,11 @@ namespace Order.DataAccess.Repository.Concrete
     public class OrderRepository : IOrderRepository
     {
         private readonly AppDbContext _appDbContext;
-        private readonly IPublishEndpoint _publishEndpoint;
-        public OrderRepository(AppDbContext appDbContext, IPublishEndpoint publishEndpoint)
+        private readonly ISendEndpointProvider _sendEndpointProvider;
+        public OrderRepository(AppDbContext appDbContext, ISendEndpointProvider sendEndpointProvider)
         {
             _appDbContext = appDbContext;
-            _publishEndpoint = publishEndpoint;
+            _sendEndpointProvider = sendEndpointProvider;
         }
         public async Task CreateOrder(OrderCreateDto orderCreateDto)
         {
@@ -52,7 +54,7 @@ namespace Order.DataAccess.Repository.Concrete
 
             await _appDbContext.AddAsync(newOrder);
             await _appDbContext.SaveChangesAsync();
-            var orderCreatedEvent = new OrderCreatedEvent
+            var orderCreatedRequestEvent = new OrderCreatedRequestEvent
             {
                 BuyerId = orderCreateDto.BuyerId,
                 OrderId = newOrder.Id,
@@ -68,14 +70,15 @@ namespace Order.DataAccess.Repository.Concrete
 
             orderCreateDto.orderItems.ForEach(x =>
             {
-                orderCreatedEvent.OrderItem.Add(new OrderItemMessage
+                orderCreatedRequestEvent.OrderItems.Add(new OrderItemMessage
                 {
                     Count = x.Count,
                     ProductId = x.ProductId,
                 });
             });
+            var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri($"queue:{RabbitMQSettingsConst.ORDER_SAGA}"));
 
-            await _publishEndpoint.Publish(orderCreatedEvent);
+            await sendEndpoint.Send<IOrderCreatedRequestEvent>(orderCreatedRequestEvent);
 
         }
     }
