@@ -23,10 +23,10 @@ namespace EventSourcing.API.EventStore
 
         public void NameChanged(ChangeProductNameDto changeProductNameDto)
         {
-            Events.AddLast(new ProductCreatedEvent
+            Events.AddLast(new ProductNameChangeEvent
             {
                 Id = changeProductNameDto.Id,
-                Name = changeProductNameDto.Name
+                ChangedName = changeProductNameDto.Name
             });
         }
 
