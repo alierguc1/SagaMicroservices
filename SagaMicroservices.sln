@@ -5,6 +5,13 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing.Shared", "EventSourcing.Shared\EventSourcing.Shared.csproj", "{EBDE54F7-78E1-4546-9E5B-7B0EAAE4E6FB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "raw", "raw", "{A52FB7B3-B048-403C-A63F-1D8A3BE4162C}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\evenstore_logo.png = ..\..\evenstore_logo.png
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing.API", "EventSourcing.API\EventSourcing.API.csproj", "{B67A7D1D-5074-4E47-AD69-DD7ACC673CF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{EBDE54F7-78E1-4546-9E5B-7B0EAAE4E6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBDE54F7-78E1-4546-9E5B-7B0EAAE4E6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBDE54F7-78E1-4546-9E5B-7B0EAAE4E6FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B67A7D1D-5074-4E47-AD69-DD7ACC673CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B67A7D1D-5074-4E47-AD69-DD7ACC673CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B67A7D1D-5074-4E47-AD69-DD7ACC673CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B67A7D1D-5074-4E47-AD69-DD7ACC673CF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
