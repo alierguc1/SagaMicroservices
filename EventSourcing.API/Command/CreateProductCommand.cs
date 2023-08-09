@@ -5,7 +5,7 @@ namespace EventSourcing.API.Command
 {
     public class CreateProductCommand : IRequest
     {
-        public CreateProductDto CreateProduct { get; set; }
+        public CreateProductDto CreateProductDto { get; set; }
 
 
 
