@@ -1,3 +1,4 @@
+using EventSourcing.API.BackgroundServices;
 using EventSourcing.API.Context;
 using EventSourcing.API.EventStore;
 using MediatR;
@@ -19,6 +20,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddEventStoreExtension(builder.Configuration);
 builder.Services.AddSingleton<ProductStream>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+// Uygulama ayaða kalktýðýnda backgroundService çalýþsýn demektir.
+builder.Services.AddHostedService<ProductReadModelEventStore>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
