@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSourcing.Shared", "Eve
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "raw", "raw", "{A52FB7B3-B048-403C-A63F-1D8A3BE4162C}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\diagrams.png = ..\..\diagrams.png
 		..\..\evenstore_logo.png = ..\..\evenstore_logo.png
 		..\..\eventstore_1.PNG = ..\..\eventstore_1.PNG
 		..\..\eventstore_2.PNG = ..\..\eventstore_2.PNG
