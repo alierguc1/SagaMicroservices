@@ -1,5 +1,6 @@
 ﻿using EventSourcing.API.Command;
 using EventSourcing.API.Dtos;
+using EventSourcing.API.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,12 @@ namespace EventSourcing.API.Controllers
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
             return Ok(await _mediator.Send(new CreateProductCommand() { CreateProductDto = createProductDto}));
+        }
+
+        [HttpGet("GetProductAllListByUserId/{userId}")]
+        public async Task<IActionResult> GetProductAllListByUserId(int userId)
+        {
+            return Ok(await _mediator.Send(new GetProductAllListByUserId() { UserId = userId }));
         }
 
         [HttpPut("ChangeProductName")]

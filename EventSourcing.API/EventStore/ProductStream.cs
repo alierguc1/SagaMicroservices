@@ -8,6 +8,7 @@ namespace EventSourcing.API.EventStore
     {
         public static string StreamName => "ProductStream";
         public static string GroupName => "AGroup";
+        //public static string GroupName => "replay"; Veriler silindiğinde
         public ProductStream(IEventStoreConnection eventStoreConnection) : base(StreamName, eventStoreConnection)
         {
         }

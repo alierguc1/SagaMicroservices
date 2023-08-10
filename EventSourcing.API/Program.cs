@@ -20,9 +20,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddEventStoreExtension(builder.Configuration);
 builder.Services.AddSingleton<ProductStream>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddHostedService<ProductReadModelEventStore>();
 
 // Uygulama ayaða kalktýðýnda backgroundService çalýþsýn demektir.
-builder.Services.AddHostedService<ProductReadModelEventStore>();
+//builder.Services.AddHostedService<ProductReadModelEventStore>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
